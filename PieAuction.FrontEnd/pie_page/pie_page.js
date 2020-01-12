@@ -5,7 +5,10 @@ $(function () {
     var urlParams = new URLSearchParams(window.location.search);
     pieId = urlParams.get("pieId");
     $.ajax(`${apiHostBase}/pies/${pieId}`)
-        .done(renderPiePage);
+        .done(renderPiePage)
+        .fail(function (xhr, status, err) {
+            alert("Ajax Failed. Is the backend running? Err:" + status)
+        });;
 });
 
 /**
@@ -26,7 +29,10 @@ function renderPiePage(pie) {
                 }
                 makerString += " " + user.FirstName + " " + user.LastName;
                 $("#pie-maker-header").text(makerString);
-            });
+            })
+            .fail(function (xhr, status, err) {
+                alert("Ajax Failed. Is the backend running? Err:" + status)
+            });;
     }
 
     // Render the properties    
@@ -46,12 +52,15 @@ function renderPiePage(pie) {
 
     // Render the user list
     $.ajax(`${apiHostBase}/auctionUsers`)
-        .done(function(users) {
+        .done(function (users) {
             $("#user-select").children().remove();
-            for(let user of users){
+            for (let user of users) {
                 $("#user-select").append(`<option value=${user.Id}>${user.FirstName} ${user.LastName}</option>`);
             }
         })
+        .fail(function (xhr, status, err) {
+            alert("Ajax Failed. Is the backend running? Err:" + status)
+        });
 
     // Render the Time Left and Start Time
     let timeEndMoment = moment.duration(moment(pie.EndDateTime).diff(moment()))
@@ -79,4 +88,7 @@ function renderPiePage(pie) {
                 $("#recommended-pie-div").append($(`<a href="pie_page.html?pieId=${newPie.Id}" class="ml-1 mr-1">${newPie.Name}</a>`))
             }
         })
+        .fail(function (xhr, status, err) {
+            alert("Ajax Failed. Is the backend running? Err:" + status)
+        });
 }

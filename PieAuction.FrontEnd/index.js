@@ -1,25 +1,3 @@
-// @ts-check
-
-/**
- * @typedef User
- * @property {String=} Id
- * @property {String} FirstName
- * @property {String} LastName
- * @property {Boolean} IsStudent
- * 
- * @typedef Pie
- * @property {String} Id
- * @property {String} Name
- * @property {String} Flavor
- * @property {Boolean} IsGlutenFree
- * @property {Boolean} IsVegan
- * @property {String[]} MadeByUserIds
- * @property {String=} SoldToUserId
- * @property {String} ImageAddress
- * @property {String} StartDateTime
- * @property {String} EndDateTime
- */
-// @ts-ignore
 let apiHostBase = `http://localhost:15665/api`;
 
 $(function () {
@@ -36,7 +14,10 @@ $(function () {
             url: `${apiHostBase}/auctionUsers`,
             method: "POST",
             data: user
-        }).done(refresh);
+        }).done(refresh)
+        .fail(function(xhr, status, err) {
+            alert("Ajax Failed. Is the backend running? Err:" + status)
+        });;
     });
 
     // Add click event to "Search" button
@@ -51,6 +32,9 @@ function refresh() {
     // Get users for the Made By filter
     $.ajax(`${apiHostBase}/auctionUsers?isStudent=true`)
         .done(populateMadeByUi)
+        .fail(function(xhr, status, err) {
+            alert("Ajax Failed. Is the backend running? Err:" + status)
+        });
 
     runPieSearch();
 }
@@ -85,6 +69,9 @@ function runPieSearch() {
         url: `${apiHostBase}/pies?${searchParamsString}`,
         method: "GET"
     }).done(populateSearchResults)
+    .fail(function(xhr, status, err) {
+        alert("Ajax Failed. Is the backend running? Err:" + status)
+    });
 }
 
 /**
@@ -111,6 +98,9 @@ function addPieToSearchResults(pie) {
                 }
                 pieRow.find(".userIds").append(user.FirstName + " " + user.LastName);
             })
+            .fail(function(xhr, status, err) {
+                alert("Ajax Failed. Is the backend running? Err:" + status)
+            });
     }
     pieRow.addClass("mt-1");
 
