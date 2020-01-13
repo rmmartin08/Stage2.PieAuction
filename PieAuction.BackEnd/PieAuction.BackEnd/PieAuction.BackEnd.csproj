@@ -106,14 +106,17 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuctionUsersController.cs" />
+    <Compile Include="Controllers\BidsController.cs" />
     <Compile Include="Controllers\PiesController.cs" />
     <Compile Include="Data_Access\AuctionUserDao.cs" />
+    <Compile Include="Data_Access\BidDao.cs" />
     <Compile Include="Data_Access\DaoBase.cs" />
     <Compile Include="Data_Access\PieDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuctionUser.cs" />
+    <Compile Include="Models\Bid.cs" />
     <Compile Include="Models\Pie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

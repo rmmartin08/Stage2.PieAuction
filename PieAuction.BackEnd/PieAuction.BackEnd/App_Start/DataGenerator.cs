@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json.Linq;
 using PieAuction.BackEnd.Data_Access;
 using PieAuction.BackEnd.Models;
 
@@ -19,7 +22,55 @@ namespace PieAuction.BackEnd.App_Start
             {
                 Task.Run((Action) KeepAddingUsers);
                 Task.Run((Action) KeepAddingPies);
+                Task.Run((Action) KeepAddingBids);
             });
+        }
+
+        public void KeepAddingBids()
+        {
+            while (true)
+            {
+                AddNewBid();
+                Thread.Sleep(TimeSpan.FromSeconds(rand.Next(0, 6)));
+            }
+        }
+
+        public void AddNewBid()
+        {
+            try
+            {
+                var httpClient = new HttpClient()
+                {
+                    BaseAddress = new Uri(@"http://localhost:15665/api/")
+                };
+
+                var userDao = new AuctionUserDao();
+                var pieDao = new PieDao();
+
+                var possibleUsers = userDao.GetFilteredListOfUsers(u => u.IsStudent == false).ToArray();
+                var randomUser = possibleUsers[rand.Next(0, possibleUsers.Length)].Id;
+
+                var possiblePies = pieDao.GetPies(p => !p.MadeByUserIds.Contains(randomUser) &&
+                                                       !p.SoldToUserId.HasValue &&
+                                                       p.EndDateTime > DateTime.Now).ToArray();
+                var randomPie = possiblePies[rand.Next(0, possiblePies.Length)].Id;
+
+                var getBids = JArray.Parse(httpClient.GetAsync("bids?pieId=" + randomPie).Result.Content
+                    .ReadAsStringAsync().Result);
+                var maxBid = getBids.Any() 
+                    ? getBids.Max(b => b["Amount"].Value<decimal>())
+                    : rand.Next(5, 200);
+
+                var res = httpClient.PostAsync("bids", new StringContent(new JObject()
+                {
+                    ["AuctionUserId"] = randomUser.ToString(),
+                    ["PieId"] = randomPie.ToString(),
+                    ["Amount"] = (int)(maxBid + rand.Next(1, 250))
+                }.ToString(), Encoding.UTF8, "application/json")).Result;
+                Console.WriteLine(res.ToString());
+
+            }
+            catch { }
         }
 
         public void KeepAddingPies()
