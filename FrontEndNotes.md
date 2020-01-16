@@ -69,28 +69,28 @@ button {
 
 JavaScript is a Front-End programming language that was created to add dynamic action to web pages. It operates by making changes to the DOM, and by adding new data or editing existing data. Like HTML and CSS, JavaScript is parsed and executed by the web browser.
 
-In the following example, `document` is a pre-defined variable that points to the top level of our DOM. The function `.getElementById()` is a native method attached to the `document` variable, which searches the DOM for any element with an ID that matches the text and returns that Element.
+In the following example, `document` is a pre-defined variable (which exists by default on every web page) that points to the top level of our DOM. The function `.getElementById()` is a native Method attached to the `document` variable, which searches the DOM for any Element with an ID that matches the text and returns that Element.
 
-```
-var headerElement = document.getElementById('header');
-headerElement.style.color = 'blue';
+```js
+var headerElement = document.getElementById('header'); // Stores the <div id="header"> Element in a variable
+headerElement.style.color = 'blue';                    // Adds an inline CSS style that changes the text color
 ```
 
-JavaScript operations can be chained--meaning that if a function returns a value, that value can be operated upon by appending a dot and a new function to the end of a statement. The following example has the same result as the example listed above.
+JavaScript operations can be chained--meaning that if a function returns a value, that value can be operated upon by appending a dot and a new function to the end of a statement. The following example has the same result as the one listed above.
 
-```
+```js
 document.getElementById('header').style.color = 'blue';
 ```
 
 ### DOM Events
 
-The DOM has a native form of dynamic interaction called [Events](https://developer.mozilla.org/en-US/docs/Web/Events), which occur at certain points throughout the life cycle of a web page. These events occur automatically when certain things happen on a page, and they can also be triggered manually using JavaScript. The most useful thing about Events in Front-End development is that JavaScript can also listen for events to happen. Using the [native JavaScript method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) `.addEventListener()`, you can attach a function that will be run any time an event occurs. We'll discuss events more later and how to effectively use them.
+The DOM has a native form of dynamic interaction called [Events](https://developer.mozilla.org/en-US/docs/Web/Events), which occur at certain points throughout the life cycle of a web page. These events occur automatically when certain things happen on a page, and they can also be triggered manually using JavaScript. The most useful thing about Events in Front-End development is that JavaScript can also listen for events to happen. Using the [native JavaScript Method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) `.addEventListener()`, you can attach a function that will be run any time an event occurs. We'll discuss events more later and how to effectively use them.
 
 ## Third-Party Libraries
 
 ### Bootstrap
 
-(Bootstrap)[https://getbootstrap.com/docs/4.4/getting-started/introduction/] is a third-party library that mainly consists of pre-built CSS classes. These pre-built classes can make front-end development a lot faster because you don't have to bother with the CSS. Instead of defining your own styles, you can simply include a link to the bootstrap library add then a CSS class to your HTML elements to style them.
+[Bootstrap](https://getbootstrap.com/docs/4.4/getting-started/introduction/) is a third-party library that mainly consists of pre-built CSS classes. These pre-built classes can make Front-End development a lot faster because you don't have to bother with the CSS. Instead of defining your own styles, you can simply include a link to the bootstrap library, then add CSS classes to your HTML Elements to style them.
 
 Example:
 
@@ -105,7 +105,7 @@ Example:
 
 [jQuery](https://api.jquery.com/) is a third-party library which is similar to Bootstrap in a lot of ways. However instead of adding CSS classes for us to use, it provides pre-built JavaScript functionality. Everything that jQuery does could also be done in pure JavaScript, but jQuery makes development faster and easier.
 
-The jQuery library defines a variable called `$` or `jQuery`, which contains all of jQuery's functionality. Any statement that begins with `$( ... )` is using a jQuery function. The primary way of using jQuery across the web is by using "selectors" to find the HTML elements we want to effect and then doing operations upon them. jQuery's Selectors have syntax very similar to CSS, meaning that the following example does exactly the same as the two JavaScript examples above.
+The jQuery library defines a variable called `$` or `jQuery`, which contains all of jQuery's functionality. Any statement that begins with `$( ... )` or `jQuery( ... )` is using a jQuery function. The primary way of using jQuery across the web is by using "Selectors" to find the HTML Elements we want to affect and then doing operations upon them. jQuery's Selectors have syntax very similar to CSS, meaning that the following example does exactly the same as the two JavaScript examples above.
 
 ```js
 $('#header').style.color = "blue";
@@ -117,75 +117,83 @@ jQuery also has lots of helper functions and another way to write the above exam
 $('#header').css({ color: blue; });
 ```
 
-jQuery Selectors don't always return one element. If we use a jQuery Selector to find all elements with a given class, there will be multiple results in the returned object. The following example will apply a color change to *all* elements that have a class of "menu-link".
+jQuery Selectors don't always return one Element. If we use a jQuery Selector to find all Elements with a given class, there will be multiple results in the returned object. The following example will apply a color change to *all* Elements that have a class of "menu-link".
 
 ```js
 $('.menu-link').css({ color: green; });
 ```
 
-In this code, the `$()` indicates that we are creating a jQuery object. The `'.menu-link'` inside of that function indicates that we are finding all elements that have a class of "menu-link" and the `.css()` indicates that we are then running the [jQuery .css() Method](https://api.jquery.com/css/#css2) on each of those results.
+In this code, the `$()` indicates that we are creating a jQuery object. The `'.menu-link'` inside of that function indicates that we are finding all Elements that have a class of "menu-link" and the `.css()` indicates that we are then running the [jQuery .css() Method](https://api.jquery.com/css/#css2) on each of those results.
 
 
 #### Selectors and Syntax
 
-Simple Selectors
+**Simple Selectors**
 
-`$('#elementId')`   : (#) Selects all elements with the specified ID. (As a rule, all IDs should be unique to one element.)
-`$('.elementClass')`: (.) Selects all elements with the specified ID.
-`$('tag')`          : (No symbol) Selects all elements of a specified HTML tag. (For example, 'button' would select all button elements.)
+| Selector             | Symbol(s)  | Description                                                                                             |
+| -------------------- | ---------  | ------------------------------------------------------------------------------------------------------- |
+| `$('#elementId')`    | #          | Selects all Elements with the specified ID. (As a rule, all IDs should be unique to one Element.)       |
+| `$('.elementClass')` | .          | Selects all Elements with the specified ID.                                                             |
+| `$('tag')`           | None (tag) | Selects all Elements of a specified HTML tag. (For example, 'button' would select all button Elements.) |
 
-Complex Selectors
+**Complex Selectors**
 
-`$('#elementId.elementClass')`: (# and .) Selects all elements with the specified ID that also have the specified class.
-`$('div.elementClass')`       : (tag and .) Selects all `div` elements with the specified class.
-`$('div#elementId')`          : (tag and #) Selects all `div` elements with the specified ID.
+| Selector                       | Symbol(s) | Description                                                                    |
+| ------------------------------ | --------- | ------------------------------------------------------------------------------ |
+| `$('#elementId.elementClass')` | # and .   | Selects all Elements with the specified ID that also have the specified class. |
+| `$('div.elementClass')`        | tag and . | Selects all `div` Elements with the specified class.                           |
+| `$('div#elementId')`           | tag and # | Selects all `div` Elements with the specified ID.                              |
 
-Descendant Selectors
-(Note that these selectors contain spaces. JavaScript doesn't pay a lot of attention to spaces, but [they are important when used in jQuery selectors](https://stackoverflow.com/questions/6865910/what-does-a-space-in-a-jquery-selector-mean).)
+**Descendant Selectors**
 
-`$('div .elementClass')`: (tag and .) Selects all elements that have the specified class and are also children of a `div` element.
-`$('.elementClass div')`: (. and tag) Selects all `div` elements that are children of elements with the specified class.
+(Note that these selectors contain spaces. JavaScript doesn't pay a lot of attention to spaces, but [they are important when used in jQuery Selectors](https://stackoverflow.com/questions/6865910/what-does-a-space-in-a-jquery-selector-mean).)
+
+
+| Selector                 | Symbol(s) | Description                                                                                  |
+| ------------------------ | --------- | -------------------------------------------------------------------------------------------- |
+| `$('div .elementClass')` | tag and . | Selects all Elements that have the specified class and are also children of a `div` Element. |
+| `$('.elementClass div')` | . and tag | Selects all `div` Elements that are children of Elements with the specified class.           |
 
 #### jQuery and JavaScript
 
-It's important to note that you can combine jQuery and vanilla JavaScript syntactically because jQuery is built on JavaScript. Native JavaScript functions will work on jQuery objects, as long as you are using the correct type of function with the correct type of object. However, one stumbling block is not matching jQuery functions with jQuery objects. The below examples illustrate the differences.
+It's important to note that because jQuery is built on JavaScript, you can combine jQuery and vanilla JavaScript syntactically. Native JavaScript functions will work on jQuery objects, as long as you are using the correct type of function with the correct type of object. However, one stumbling block is not matching jQuery functions with jQuery objects. The below examples illustrate the differences.
 
-Valid: (jQuery Object calling jQuery Method)
+- **Valid:** (jQuery Object calling jQuery Method)
 ```js
 $('.menu-link').css({ color: green; });
 ```
 
-Valid: (jQuery Object calling Native JavaScript Method)
+- **Valid:** (jQuery Object calling Native JavaScript Method)
 ```js
 $('#menu').getElementsByClassName('menu-link');
 ```
 
-Invalid: (Native JavaScript Object calling jQuery Method)
+- **Invalid:** (Native JavaScript Object calling jQuery Method)
 ```js
 document.getElementsByClassName('menu-link').css({ color: green; });
 ```
 
-Valid: (We can make the above example valid by passing the statement wrapped with jQuery)
+- **Valid:** (We can make the above example valid by passing the statement wrapped with jQuery)
 ```js
 $(document.getElementsByClassName('menu-link')).css({ color: green; });
 ```
 
-And this makes the above example is nearly identical to:
+- **Valid:** (And nearly identical to the above example)
 ```js
 $('.menu-link').css({ color: green; });
 ```
 
 #### Using jQuery to Create Elements
 
-The code that we are using to create a To-Do list often uses tick marks inside of a jQuery object. These tick marks are similar to quotation marks, and in these examples they contain raw HTML code. Using raw HTML inside of a jQuery Object indicates that the text itself should be parsed as HTML code. If we see raw HTML inside of a jQuery object constructor, that means we're not using a jQuery selector but rather creating a new (unattached) HTML element and selecting that element.
+The code that we are using to create a To-Do list often uses tick marks inside of a jQuery object. These tick marks are similar to quotation marks, and in these examples they contain raw HTML code. Using raw HTML inside of a jQuery Object indicates that the text itself should be parsed as HTML code. If we see raw HTML inside of a jQuery object constructor, that means we're not using a jQuery Selector but rather creating a new (unattached) HTML Element and selecting that Element.
 
 ```js
-$('#header')                        // Select the element with an ID of "header"
+$('#header')                        // Select the Element with an ID of "header"
 ```
 ```js
 $(`<div id="header">Header</div>`)  // Create a new div with an id of "header"
 ```
-When we create this new element, we can then insert it into the DOM structure by calling the [jQuery .appendTo() Method](https://api.jquery.com/appendTo/). The following code would add a new link to the Menu we created above in the HTML example.
+When we create this new Element, it doesn't appear anywhere on the page. But we can then insert it into the DOM structure by calling the [jQuery .appendTo() Method](https://api.jquery.com/appendTo/). The following code would add a new link to the Menu we created above in the HTML example.
 
 ```js
 var newLink = $(`<a href="/new-page" class="menu-link">New Link</a>`);
@@ -194,21 +202,21 @@ var menu    = $('#menu');
 newLink.appendTo(menu);
 ```
 
-We can also shorten the above code using chaining, just like in pure JavaScript.
+We can also shorten the above code using chaining, just like in native JavaScript.
 
 ```js
 $(`<a href="/new-page" class="menu-link">New Link</a>`).appendTo( $('#menu') );
 ```
 
-In the above code, our first jQuery object (`$()`) is creating a new jQuery object using literal HTML inside of tick marks. We then apply the `.appendTo()` Method to that object, which will insert that new object somewhere into the DOM structure. `.appendTo()` needs to have an HTML element to target so that it knows where in the DOM structure to add the object. Note the syntax of the argument we give to `.appendTo()`. If we were to pass a simple text string such as: `.appendTo('#menu')`, this would not find a new jQuery object using that string, it would just stay as a string and throw an error! So instead we create another jQuery object and pass that as the argument. It's functionally the same as the preceding example, except that we don't store the results of the selector `$('#menu')` as a variable. Instead we pass it straight into the function.
+In the above code, our first jQuery object (`$()`) is creating a new jQuery object using literal HTML inside of tick marks. We then apply the `.appendTo()` Method to that object, which will insert that new object somewhere into the DOM structure. `.appendTo()` needs to have an HTML Element to target so that it knows where in the DOM structure to add the object. Note the syntax of the argument we give to `.appendTo()`. If we were to pass a simple text string such as: `.appendTo('#menu')`, this would *not* find a new jQuery object using that string, it would just stay as a string and throw an error! So instead we create another jQuery object and pass that as the argument. It's functionally the same as the preceding example, except that we don't store the results of the Selector `$('#menu')` as a variable. Instead we pass it straight into the function.
 
-> **Sidenote**: Remember that JavaScript doesn't pay much attention to spaces? That's true inside of the `.appendTo()` arguments above. `.appendTo( $('#menu') )` is functionally the same as `.appendTo($('#menu'))`. I added these spaces for clarity and you can do the same if you'd like. The biggest place to pay close attention to spaces is within strings (`''` / `""`) and inside of jQuery selectors (which conveniently are also strings): `$('#menu div')`.
+> **Sidenote**: Remember when we said that JavaScript doesn't pay much attention to spaces? That's true inside of the `.appendTo()` arguments above. `.appendTo( $('#menu') )` is functionally the same as `.appendTo($('#menu'))`. I added these spaces for clarity and you can do the same if you'd like. The biggest place to pay close attention to spaces is within strings (`''` / `""`) and inside of jQuery Selectors (which conveniently are also strings): `$('#menu div')`.
 
 > **Sidenote**: Quotation marks (`''` / `""`) in JavaScript and jQuery are nearly identical. In jQuery, `$('#menu')` is the same as `$("#menu")` and you can use either single or double quotation marks as long as you use the same type to both open and close a string. (Invalid: `$("#menu')` ) There are some [small differences between single and double quotes](https://stackoverflow.com/questions/242813/when-to-use-double-or-single-quotes-in-javascript) when escaping literal characters that you probably won't run into. Back tick marks (``) [are a bit more special](https://stackoverflow.com/questions/27678052/usage-of-the-backtick-character-in-javascript), but it seems that the biggest reason for their use in the example To-Do code is to avoid having to escape either single or double quotes inside of our HTML strings.
 
 #### jQuery Event Listeners
 
-Remember DOM Events? jQuery has some handy shortcuts for managing them. The biggest one you'll see out there is a method called `.click()` which listens for a mouse click on a DOM Element. When that element is clicked, the function is performed. These events can be placed on almost anything.
+Remember DOM Events? jQuery has some handy shortcuts for managing them. The biggest one you'll see out there is a Method called `.click()` which listens for a mouse click on a DOM Element. When that Element is clicked, the function is performed. These events can be placed on almost anything.
 
 Here's a reference to part of our HTML structure listed above:
 
@@ -219,7 +227,7 @@ Here's a reference to part of our HTML structure listed above:
 </div>
 ```
 
-And here are some JavaScript statements that attach click listeners to elements:
+And here are some JavaScript statements that attach click listeners to Elements:
 
 The Element with an ID of 'menu'
 ```js
@@ -235,14 +243,14 @@ $('.menu-link').click(function() {
 });
 ```
 
-If we were to run *both* of these statements, there would be a click listener on the `div` element and both interior `a` elements. Because the `a` elements are children of the `div`, a click to one of those would also register as a click to the parent. This means that clicking on the link labeled "Home" would output a console log of:
+If we were to run *both* of these statements, there would be a click listener on the `div` Element and both interior `a` Elements. Because the `a` Elements are children of the `div`, a click to one of those would also register as a click to the parent. This means that clicking on the link labeled "Home" would output a console log of:
 
 ```
 Clicked .menu-link
 Clicked #menu
 ```
 
-There's also a default object that is passed into all `.click()` functions called `event`. You can rename this objectif you'd like by putting a new name into the function's arguments. Lowercase e is a very common example. This event variable stores all information about the event that triggered it. For example:
+There's also a default object that is passed into all `.click()` functions called `event`. If you'd like, you can rename this object by putting a new name into the function's arguments. Lowercase e is a very common example. This event variable stores all information about the event that triggered it. For example:
 
 ```js
 $('.menu-link').click(function() {
@@ -264,7 +272,7 @@ These will result in a console log of:
 > MouseEvent { ... }
 ```
 
-In the console, you can expand this event declaration to see a plethora of information describing the event itself. One very useful part of this output is `event.target`, which contains the exact HTML Element that triggered the event. From here you can access various properties of the target element. For instance:
+In the console, you can expand this event declaration to see a plethora of information describing the event itself. One very useful part of this output is `event.target`, which contains the exact HTML Element that triggered the event. From here you can access various properties of the target Element. For instance:
 
 ```js
 $('.menu-link').click(function() {
