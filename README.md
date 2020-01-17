@@ -62,3 +62,35 @@ See this issue for an example: https://github.com/PercyODI/Stage2.PieAuction/iss
 
 ### Step Four
 
+Time for some features! As you can probably already tell, there are some parts of the application that aren't fully fleshed out. The product owner for this application has asked for bidding to be implemented and displayed on the pie pages. 
+
+Our architects have tentatively decided on the following ERD for the Pie, AuctionUser, and Bid models. Try to stick to it as closely as possible, but feel free to make any changes you deem necessary!
+
+![Backend ERD](Instruction.Images\ERD.jpg)
+
+You will start to see mentors adding issues to **your** repo. These issues are feature requests and bugs that need to be implemented in your code. If something is unclear in the issue, please comment in it so that the poster can clarify.
+
+When you decide on an issue to work on, follow these steps:
+
+1. Comment in the issue that you are taking a look at it
+2. Make comments if anything needs clarified or explained
+3. Implement the issue 
+    - If it is a bug, fix the bug
+    - If it is a feature, add the feature
+4. Once you have it working, commit your code using GitHub Desktop
+    - In your commit summary, use the words "resolves #123", but replace "123" with the issue number
+        - The issue number can be found at the end of the URL 
+        - It can also be found at the end of the issue title
+        - ![Issue Number Location](Instruction.Images\IssueNumberLocation.JPG)
+        - Be sure to keep the pound sign (hashtag) in front of the number
+5. Push the changes up to GitHub
+6. Confirm in GitHub that the issue was closed 
+    - By using the phrase "resolves #123", GitHub will automatically close issue 123.
+    - If it is not automatically closed, close the issue manually, with a comment explanation. 
+7. Move on to a new issue
+
+Mentors will be monitoring issues. If you mark an issue closed, a mentor may pick up your repo, try it, and confirm it is working as expected. If there is an issue, they will reopen the issue. When looking for an issue to work on, prioritize reopened issues over new issues!
+
+If you happen to find a bug that is out of scope of your current work, feel free to add your own issues to your repo! That way, you won't lose them!
+
+If you have any questions or need any help, please reach out on Slack! We will be monitoring GitHub, but since we don't see you in person, we can't tell if you are struggling or not!
