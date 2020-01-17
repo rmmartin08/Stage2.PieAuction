@@ -41,10 +41,10 @@ Now that you have taken a quick look around and actually used the application, l
 We will use GitHub issues to share and communicate. First, let's make some issues on my repo (not yours!) [PieAuction (Instructor's)](https://github.com/PercyODI/Stage2.PieAuction)
 
 Then, click on the issues tab
-![Issues Tab Location](Instruction.Images\ClickIssues.JPG)
+![Issues Tab Location](/Instruction.Images/ClickIssues.JPG?raw=true)
 
 To make a new issue, click the "New Issue" button
-![New Issue Location](Instruction.Images\ClickNewIssue.JPG)
+![New Issue Location](/Instruction.Images/ClickNewIssue.JPG?raw=true)
 
 Once there, give your question a good title, and put some meaningful information in the comments.
 
@@ -66,7 +66,7 @@ Time for some features! As you can probably already tell, there are some parts o
 
 Our architects have tentatively decided on the following ERD for the Pie, AuctionUser, and Bid models. Try to stick to it as closely as possible, but feel free to make any changes you deem necessary!
 
-![Backend ERD](Instruction.Images\ERD.jpg)
+![Backend ERD](/Instruction.Images/ERD.jpg?raw=true)
 
 You will start to see mentors adding issues to **your** repo. These issues are feature requests and bugs that need to be implemented in your code. If something is unclear in the issue, please comment in it so that the poster can clarify.
 
@@ -81,7 +81,7 @@ When you decide on an issue to work on, follow these steps:
     - In your commit summary, use the words "resolves #123", but replace "123" with the issue number
         - The issue number can be found at the end of the URL 
         - It can also be found at the end of the issue title
-        - ![Issue Number Location](Instruction.Images\IssueNumberLocation.JPG)
+        - ![Issue Number Location](/Instruction.Images/IssueNumberLocation.JPG?raw=true)
         - Be sure to keep the pound sign (hashtag) in front of the number
 5. Push the changes up to GitHub
 6. Confirm in GitHub that the issue was closed 
