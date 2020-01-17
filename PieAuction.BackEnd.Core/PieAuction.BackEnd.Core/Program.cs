@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using PieAuction.BackEnd.Core.DataGeneration;
 
 namespace PieAuction.BackEnd.Core
 {
@@ -7,6 +8,11 @@ namespace PieAuction.BackEnd.Core
     {
         public static void Main(string[] args)
         {
+
+            // Start Data Generator
+            var dataGenerator = new DataGenerator();
+            dataGenerator.StartGenerating();
+
             CreateWebHostBuilder(args).Build().Run();
         }
 
