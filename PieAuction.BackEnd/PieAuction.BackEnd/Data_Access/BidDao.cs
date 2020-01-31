@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using LiteDB;
 using PieAuction.BackEnd.Models;
@@ -20,15 +21,15 @@ namespace PieAuction.BackEnd.Data_Access
                     AuctionUserId = inBid.AuctionUserId,
                     PieId = inBid.PieId,
                     Amount = inBid.Amount,
-                    Timestamp = DateTime.Now                
-                    };
+                    Timestamp = DateTime.Now
+                };
 
-                   bidCol.Insert(newBid);
-                   return newBid;
-                }
-           
-        }
+                bidCol.Insert(newBid);
+                return newBid;
+            }
+
         }
 
     }
+}
 
